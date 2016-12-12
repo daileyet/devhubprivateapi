@@ -1,0 +1,184 @@
+FORMAT: 1A
+HOST: http://maoanping.f3322.net:5901/api/v1/pri
+
+# devhub private API
+
+Devhub is a simple API allowing consumers to view devhub and vote in them.
+
+## Users basic info Collection  [/users/{id}]
+
+### User basic info [PUT]
+
+update a user basic info.
+
++ Request (application/json)
+    
+        {
+            "userEmail":"tester_new@163.com",
+            "loginTel":"18962188644",
+        }
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "rst": {
+                "id": 1,
+                "userName": "Tester",
+                "userEmail": "tester_new@163.com",
+                "loginTel": "18962188644",
+                "createDate": 1481447430000
+              },
+              "base_resp": {
+                "ret": 0,
+                "err_msg": ""
+              }
+            }
+            
+            
+## Users detail info Collection  [/users/{id}/detail]
+
+### User detai info [GET]
+
+get a user detail info.
+
++ Request (application/json)
+        
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "rst": {
+                "userId": 1,
+                "displayName": "Jack",
+                "birthday": 1481447430000,
+                "occupation": "",
+                "organization": "",
+                "country":"China",
+                "address":"苏州",
+                "university":"清华",
+                "major":"计算机",
+                "education":"本科"
+              },
+              "base_resp": {
+                "ret": 0,
+                "err_msg": ""
+              }
+            }
+
+### User detail info [POST]
+
+create a user detail info.
+
++ Request (application/json)
+
+        {
+            "displayName": "Jack",
+            "birthday": 1481447430000,
+            "occupation": "",
+            "organization": "",
+            "country":"China",
+            "address":"苏州",
+            "university":"清华",
+            "major":"计算机",
+            "education":"本科"
+        }
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "rst": {
+                "userId": 1,
+                "displayName": "Jack",
+                "birthday": 1481447430000,
+                "occupation": "",
+                "organization": "",
+                "country":"China",
+                "address":"苏州",
+                "university":"清华",
+                "major":"计算机",
+                "education":"本科"
+              },
+              "base_resp": {
+                "ret": 0,
+                "err_msg": ""
+              }
+            }
+            
+            
+### User detail info [PUT]
+
+update a user detail info.
+
++ Request (application/json)
+
+        {
+            "displayName": "Jack",
+            "birthday": 1481447430000,
+            "occupation": "",
+            "organization": "",
+            "country":"China",
+            "address":"苏州",
+            "university":"清华",
+            "major":"计算机",
+            "education":"本科"
+        }
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "rst": {
+                "userId": 1,
+                "displayName": "Jack",
+                "birthday": 1481447430000,
+                "occupation": "",
+                "organization": "",
+                "country":"China",
+                "address":"苏州",
+                "university":"清华",
+                "major":"计算机",
+                "education":"本科"
+              },
+              "base_resp": {
+                "ret": 0,
+                "err_msg": ""
+              }
+            }
+            
+            
+## Users Auth out Collection  [/users/auth/out]
+
+### User logout [GET]
+
+Login user by user name and  password, it will generate a session current now.
+
++ Request (application/json)
+
+        {
+            "id":1
+        }
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "rst": {
+                "id": 1,
+                "userName": "Tester",
+                "userEmail": "tester@163.com",
+                "loginTel": "18962188643",
+                "createDate": 1481447430000
+              },
+              "base_resp": {
+                "ret": 0,
+                "err_msg": ""
+              }
+            }
