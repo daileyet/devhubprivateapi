@@ -1,14 +1,17 @@
 FORMAT: 1A
-HOST: http://maoanping.f3322.net:5901/api/v1/pri
+HOST: http://maoanping.f3322.net:5901/api/v1/pvi
 
 # devhub private API
 
 Devhub is a simple API allowing consumers to view devhub and vote in them.
 All api in this doc, need login at first.
 
+# Users Collection
+user, user detail private collection
+
 ## Users basic info Collection  [/users/{id}]
 
-### User basic info [PUT]
+### Update user basic info [PUT]
 
 update a user basic info.
 
@@ -40,7 +43,7 @@ update a user basic info.
             
 ## Users detail info Collection  [/users/{id}/detail]
 
-### User detai info [GET]
+### Get user detai info [GET]
 
 get a user detail info.
 
@@ -70,7 +73,7 @@ get a user detail info.
               }
             }
 
-### User detail info [POST]
+### Create user detail info [POST]
 
 create a user detail info.
 
@@ -112,7 +115,7 @@ create a user detail info.
             }
             
             
-### User detail info [PUT]
+### Update user detail info [PUT]
 
 update a user detail info.
 
@@ -154,9 +157,9 @@ update a user detail info.
             }
             
             
-## Users Auth out Collection  [/users/auth/out]
+## Users auth out Collection  [/users/auth/out]
 
-### User logout [GET]
+### Do logout [GET]
 
 Login user by user name and  password, it will generate a session current now.
 
@@ -176,6 +179,147 @@ Login user by user name and  password, it will generate a session current now.
                 "userName": "Tester",
                 "userEmail": "tester@163.com",
                 "loginTel": "18962188643",
+                "createDate": 1481447430000
+              },
+              "base_resp": {
+                "ret": 0,
+                "err_msg": ""
+              }
+            }
+
+
+## Team create Collection   [/teams]
+
+### Creat team [POST]
+
++ Request (application/json)
+        
+        {
+            "teamName": "first_team",
+            "owner": 1
+        }
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "rst": {
+                "id": 1,
+                "teamName": "first_team",
+                "owner": 1,
+                "createBy": 1,
+                "createDate": 1481447430000
+              },
+              "base_resp": {
+                "ret": 0,
+                "err_msg": ""
+              }
+            }
+
+## Team update Collection   [/teams/{tid}]
+
+### Update team [PUT]
+
++ Request (application/json)
+        
+        {
+            "id": 1,
+            "teamName": "first_team2",
+            "owner": 2
+        }
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "rst": {
+                "id": 1,
+                "teamName": "first_team",
+                "owner": 1,
+                "createBy": 1,
+                "createDate": 1481447430000
+              },
+              "base_resp": {
+                "ret": 0,
+                "err_msg": ""
+              }
+            }
+
+## Team member create Collection   [/teams/members]
+
+### Create team member [POST]
+
++ Request (application/json)
+        
+        {
+            "teamId": 1,
+            "userId": 1,
+            "position": 0
+        }
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "rst": {
+                "id": 1,
+                "teamId": 1,
+                "userId": 1,
+                "position": 0,
+                "createDate": 1481447430000
+              },
+              "base_resp": {
+                "ret": 0,
+                "err_msg": ""
+              }
+            }
+
+## Team member Collection   [/teams/members/{mid}]
+
+### Update team member [PUT]
+
++ Request (application/json)
+        
+        {
+            "id":1,
+            "teamId": 1,
+            "userId": 1,
+            "position": 1
+        }
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "rst": {
+                "id": 1,
+                "teamId": 1,
+                "userId": 1,
+                "position": 1,
+                "createDate": 1481447430000
+              },
+              "base_resp": {
+                "ret": 0,
+                "err_msg": ""
+              }
+            }
+
+### Delete team member  [DELETE]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "rst": {
+                "id": 1,
+                "teamId": 1,
+                "userId": 1,
+                "position": 1,
                 "createDate": 1481447430000
               },
               "base_resp": {
