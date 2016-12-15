@@ -389,10 +389,7 @@ Competition submission submit
 + Request (application/json)
         
         {
-            "name":"First Competition",
-            "title": "The first competition for devhub",
-            "type": "Research",
-            "status": "Active"
+            "teamId":1,
         }
 
 + Response 200 (application/json)
@@ -401,8 +398,13 @@ Competition submission submit
 
             {
               "rst": {
-                "competionId": 1,
-                "teamId":1
+                "id": 1,
+                "competionId":1,
+                "teamId":1,
+                "createBy":1,
+                "createDate":1481447430000,
+                "lastUpdateDate":null
+                "score":null
               },
               "base_resp": {
                 "ret": 0,
