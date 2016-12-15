@@ -1,12 +1,12 @@
-FORMAT: 1A
+FORMAT: v1
 HOST: http://maoanping.f3322.net:5901/api/v1/pvi
 
-# devhub private API
+# devhub private API 
 
 Devhub is a simple API allowing consumers to view devhub and vote in them.
 All api in this doc, need login at first.
 
-# Users Collection
+# Group User
 user, user detail private collection
 
 ## Users basic info Collection  [/users/{id}]
@@ -14,6 +14,9 @@ user, user detail private collection
 ### Update user basic info [PUT]
 
 update a user basic info.
+
++ Parameters
+    + id (integer) ... user id
 
 + Request (application/json)
     
@@ -42,6 +45,9 @@ update a user basic info.
             
             
 ## Users detail info Collection  [/users/{id}/detail]
+
++ Parameters
+    + id (integer) ... user id
 
 ### Get user detai info [GET]
 
@@ -187,6 +193,8 @@ Login user by user name and  password, it will generate a session current now.
               }
             }
 
+# Group Team
+Team, team member private collection
 
 ## Team create Collection   [/teams]
 
@@ -218,6 +226,9 @@ Login user by user name and  password, it will generate a session current now.
             }
 
 ## Team update Collection   [/teams/{tid}]
+
++ Parameters
+    + tid (integer) ... team id
 
 ### Update team [PUT]
 
@@ -279,6 +290,9 @@ Login user by user name and  password, it will generate a session current now.
 
 ## Team member Collection   [/teams/members/{mid}]
 
++ Parameters
+    + mid (integer) ... team member id
+
 ### Update team member [PUT]
 
 + Request (application/json)
@@ -327,3 +341,179 @@ Login user by user name and  password, it will generate a session current now.
                 "err_msg": ""
               }
             }
+            
+# Group Competitions
+Competition, submissons, data file private collection
+
+## Competition create Collection [/competitions]
+
+### Create competition [POST]
+
++ Request (application/json)
+        
+        {
+            "name":"First Competition",
+            "title": "The first competition for devhub",
+            "type": "Research",
+            "status": "Active"
+        }
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "rst": {
+                "id": 1,
+                "name":"First Competition",
+                "title": "The first competition for devhub",
+                "type": "Research",
+                "status": "Active",
+                "createBy":1,
+                "createDate": 1481447430000
+              },
+              "base_resp": {
+                "ret": 0,
+                "err_msg": ""
+              }
+            }
+
+## Submission create Collection [/competitions/{id}/submissons]
+Competition submission submit
+
++ Parameters
+    + id (integer) ... competition id
+
+### Create submission [POST]
+
++ Request (application/json)
+        
+        {
+            "name":"First Competition",
+            "title": "The first competition for devhub",
+            "type": "Research",
+            "status": "Active"
+        }
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "rst": {
+                "competionId": 1,
+                "teamId":1
+              },
+              "base_resp": {
+                "ret": 0,
+                "err_msg": ""
+              }
+            }
+
+## All Submission data files Collection [/competitions/submissons/{sid}/files]
+List the assigned submission all submit data files info
+
++ Parameters
+    + sid (integer) ... competition submission id
+
+### List all submission data file [GET]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "rst": [{
+                    "id":1,
+                    "competitionSubmissionId":1,
+                    "versionNumber":1.0,
+                    "versionTag":"test",
+                    "createBy":1,
+                    "createDate":1481447430000,
+                    "fileName":"testsubmissonfile1.zip",
+                    "fileFormat":".zip (230.99 mb)"
+                }
+              ],
+              "base_resp": {
+                "ret": 0,
+                "err_msg": ""
+              }
+            }
+
+## Submission data files Collection [/competitions/submissons/{sid}/files/{fid}]
+Get the assigned submission id and data file id info
+
++ Parameters
+    + sid (integer) ... competition submission id
+    + fid (integer) ... competition submission data file id
+    
+
+### Fetch one submission data file    [GET]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "rst": {
+                    "id":1,
+                    "competitionSubmissionId":1,
+                    "versionNumber":1.0,
+                    "versionTag":"test",
+                    "createBy":1,
+                    "createDate":1481447430000,
+                    "fileName":"testsubmissonfile1.zip",
+                    "fileFormat":".zip (230.99 mb)"
+                },
+              "base_resp": {
+                "ret": 0,
+                "err_msg": ""
+              }
+            }
+
+
+## Submission data files upload Collection [/competitions/submissons/{sid}/files/upload]
+Upload local file as new data file
+
++ Parameters
+    + sid (integer) ... competition submission id
+
+
+### Upload submission data file [POST]
+Upload local file by form submit; required form field &lt;input type="file" name="file" /&gt;, optional form field &lt;input type="text" name="versionTag" /&gt;.
+It will upload local file to system, then create a reference submission data file record.
+    
++ Request (multipart/form-data)
+
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "rst": {
+                    "id":1,
+                    "competitionSubmissionId":1,
+                    "versionNumber":1.0,
+                    "versionTag":"test",
+                    "createBy":1,
+                    "createDate":1481447430000,
+                    "fileName":"testsubmissonfile1.zip",
+                    "fileFormat":".zip (230.99 mb)"
+                },
+              "base_resp": {
+                "ret": 0,
+                "err_msg": ""
+              }
+            }
+            
+## Submission data files download Collection [/competitions/submissons/{sid}/files/{fid}/download]
+
++ Parameters
+    + sid (integer,optional) ... competition submission id
+    + fid (integer,required) ... competition submission data file id
+    
+    
+### Download submission data file   [GET]
+
++ Response 200 (application/octet-stream)
